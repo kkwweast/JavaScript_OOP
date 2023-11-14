@@ -12,22 +12,18 @@ class Person {
         this.hobbies.push(hobby);
     }
 
-    removeHobby(hobby) {
-        for (let i = 0; i < this.hobbies.length; i++) {
-            if (this.hobbies[i] === hobby) {
-                this.hobbies.splice(i, 1);
-                break;
-            }
-        }
+    removeHobby(hobbyToRemove) {
+        // Using filter to create a new array without the specified hobby
+        this.hobbies = this.hobbies.filter(element => element !== hobbyToRemove);
     }
 
     greeting() {
-        console.log("Hello fellow person!");
+        console.log("Hello World!");
     }
 }
 
+// Exercise 3
 const person = new Person("Sirius Black", ["cat"], "Grimold place", ["sulks", "advises", "inspires", "hounds"]);
-
 console.log(person);
 person.addHobby("kayaking");
 person.removeHobby("kayaking");
@@ -46,6 +42,7 @@ class Coder extends Person {
     }
 }
 
+// Exercise 3
 const coder = new Coder("Wade", ["dog"], "162 Fake Street", ["gaming", "hacking", "surfing"]);
 console.log(coder);
 coder.greeting();
@@ -56,28 +53,40 @@ class Calculator {
         this.result = 0;
     }
 
-    add(a) {
-        this.result += a;
+    add(a, b) {
+        if (b === undefined) {
+            this.result = this.result + a;
+        } else {
+            this.result = a + b;
+        }
+        return this.result;
     }
 
-    subtract(a) {
-        this.result -= a;
+    subtract(a, b) {
+        if (b === undefined) {
+            this.result = this.result - a;
+        } else {
+            this.result = a - b;
+        }
+        return this.result;
     }
 
     multiply(a, b) {
         if (b === undefined) {
-            this.result *= a;
+            this.result = this.result * a;
         } else {
             this.result = a * b;
         }
+        return this.result;
     }
 
     divide(a, b) {
         if (b === undefined) {
-            this.result /= a;
+            this.result = this.result / a;
         } else {
             this.result = a / b;
         }
+        return this.result;
     }
 
     displayResult() {
@@ -86,9 +95,10 @@ class Calculator {
 }
 
 const calc = new Calculator();
-calc.add(5);
+calc.add(5, 7);
 calc.displayResult();
-calc.subtract(3);
+calc.subtract(3, 5);
+calc.displayResult();
 calc.multiply(2, 7);
 calc.displayResult();
 calc.divide(6, 5);
